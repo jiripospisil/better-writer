@@ -10,7 +10,7 @@
         <Style x:Key="UtilityButton" TargetType="{x:Type Button}">
             <Setter Property="Padding" Value="5 5 5 5" />
             <Setter Property="Width" Value="100" />
-            <Setter Property="Margin" Value="5 5 5 5" />
+            <Setter Property="Margin" Value="5 5 0 5" />
             <Setter Property="Foreground" Value="#3A3B3C" />
             <Setter Property="Background" Value="#EAECF5" />
         </Style>
@@ -19,9 +19,11 @@
             <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Foreground" Value="#3A3B3C" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="15 15 15 15" />
         </Style>
     </UserControl.Resources>
-    
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -29,11 +31,13 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Style="{StaticResource MainEditor}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap">
+        <Border BorderBrush="#DCDDE1" BorderThickness="1" CornerRadius="4" Padding="1"> 
+            <TextBox Grid.Row="0" Style="{StaticResource MainEditor}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap">
                 `Sundown` is a Markdown parser based on the original code of the
                 [Upskirt library](http://fossil.instinctive.eu/libupskirt/index) by Natacha Porté.
-        </TextBox>
-
+            </TextBox>
+            
+        </Border>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="HTML" Style="{StaticResource UtilityButton}" />
             <Button Content="PDF" Style="{StaticResource UtilityButton}" />
