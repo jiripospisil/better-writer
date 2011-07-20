@@ -6,11 +6,9 @@ using BetterWriter.EditorModule.Views;
 namespace BetterWriter.EditorModule {
     public class EditorModule : IModule {
 
-        private readonly IUnityContainer container;
         private readonly IRegionManager regionManager;
 
-        public EditorModule(IUnityContainer container, IRegionManager regionManager) {
-            this.container = container;
+        public EditorModule(IRegionManager regionManager) {
             this.regionManager = regionManager;
         }
 
