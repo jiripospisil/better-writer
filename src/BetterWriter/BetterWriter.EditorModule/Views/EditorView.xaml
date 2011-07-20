@@ -29,7 +29,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Style="{StaticResource MainEditor}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
+        <TextBox Grid.Row="0" Style="{StaticResource MainEditor}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap">
                 `Sundown` is a Markdown parser based on the original code of the
                 [Upskirt library](http://fossil.instinctive.eu/libupskirt/index) by Natacha Porté.
         </TextBox>
