@@ -6,6 +6,11 @@
              mc:Ignorable="d" 
              >
     <Grid>
-        <TextBlock Text="Hello there!" />
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBox  Background="#FDFEFF" Grid.Row="0" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" FontFamily="Arial" FontSize="14" Foreground="#FF3A3B3C" ForceCursor="False" />
     </Grid>
 </UserControl>
