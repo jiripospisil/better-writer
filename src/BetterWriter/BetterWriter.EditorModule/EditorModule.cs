@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Practices.Prism.Modularity;
+﻿using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
+using Microsoft.Practices.Prism.Regions;
+using BetterWriter.EditorModule.Views;
 
 namespace BetterWriter.EditorModule {
     public class EditorModule : IModule {
 
         private readonly IUnityContainer container;
+        private readonly IRegionManager regionManager;
 
-        public EditorModule(IUnityContainer container) {
+        public EditorModule(IUnityContainer container, IRegionManager regionManager) {
             this.container = container;
+            this.regionManager = regionManager;
         }
 
         public void Initialize() {
-            
+            regionManager.RegisterViewWithRegion("EditorModule", typeof(EditorView));
         }
     }
 }

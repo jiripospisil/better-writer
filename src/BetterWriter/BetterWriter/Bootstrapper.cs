@@ -17,5 +17,16 @@ namespace BetterWriter {
             App.Current.MainWindow.Show();
         }
 
+        protected override void ConfigureModuleCatalog() {
+            base.ConfigureModuleCatalog();
+
+            ModuleCatalog moduleCatalog = this.ModuleCatalog as ModuleCatalog;
+
+            moduleCatalog.AddModule(new ModuleInfo() {
+                ModuleName = "EditorModule",
+                ModuleType = "BetterWriter.EditorModule.EditorModule, BetterWriter.EditorModule, Version=1.0.0.0, Culture=neutral"
+            });
+        }
+
     }
 }
