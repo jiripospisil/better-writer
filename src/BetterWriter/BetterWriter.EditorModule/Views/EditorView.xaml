@@ -5,12 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              >
+
+    <UserControl.Resources>
+        <Style x:Key="UtilityButton" TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="5 5 5 5" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Margin" Value="5 5 5 5" />
+            <Setter Property="Foreground" Value="#3A3B3C" />
+            <Setter Property="Background" Value="#EAECF5" />
+        </Style>
+        <Style x:Key="MainEditor" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#FDFEFF" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="#3A3B3C" />
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox  Background="#FDFEFF" Grid.Row="0" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" FontFamily="Arial" FontSize="14" Foreground="#FF3A3B3C" ForceCursor="False" />
+        <TextBox Grid.Row="0" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="HTML" Style="{StaticResource UtilityButton}" />
+            <Button Content="PDF" Style="{StaticResource UtilityButton}" />
+        </StackPanel>
+
     </Grid>
 </UserControl>
