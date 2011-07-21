@@ -11,14 +11,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BetterWriter.EditorModule.ViewModels;
 
 namespace BetterWriter.EditorModule.Views {
     /// <summary>
     /// Interaction logic for EditorView.xaml
     /// </summary>
     public partial class EditorView : UserControl {
-        public EditorView() {
+        public EditorView(EditorViewModel viewModel) {
             InitializeComponent();
+
+            this.Loaded += (s, e) => {
+                this.DataContext = viewModel;
+            };
         }
     }
 }
