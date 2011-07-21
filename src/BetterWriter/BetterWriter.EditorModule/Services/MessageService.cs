@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 
 namespace BetterWriter.EditorModule.Services {
-    public class DialogService : IDialogService {
+    public class MessageService : IMessageService {
         public void ShowMessage(string message) {
             MessageBox.Show(message);
         }
