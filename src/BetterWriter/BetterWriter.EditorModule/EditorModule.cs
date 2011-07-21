@@ -18,6 +18,7 @@ namespace BetterWriter.EditorModule {
         public void Initialize() {
             container.RegisterType<IFileService, FileService>();
             container.RegisterType<IMessageService, MessageService>();
+            container.RegisterType<IDialogService, DialogService>();
 
             regionManager.RegisterViewWithRegion("EditorModule", typeof(EditorView));
         }
