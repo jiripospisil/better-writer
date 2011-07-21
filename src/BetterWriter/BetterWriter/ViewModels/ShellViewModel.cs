@@ -9,24 +9,25 @@ namespace BetterWriter.ViewModels {
 
         #region Fields
 
+        private const string UNTITLED = "Untitled";
         private readonly IEventAggregator eventAggregator;
 
         #endregion
 
         #region Properties
 
-        private string _fileName;
-        public string FileName {
+        private string _windowTitle;
+        public string WindowTitle {
             get {
-                if(_fileName == null) {
-                    return "Untitled";
+                if(_windowTitle == null) {
+                    return GetWindowTitle(UNTITLED);
                 }
-                return _fileName;
+                return _windowTitle;
             }
             set {
-                if(_fileName != value) {
-                    _fileName = value;
-                    RaisePropertyChanged("FileName");
+                if(_windowTitle != value) {
+                    _windowTitle = value;
+                    RaisePropertyChanged("WindowTitle");
                 }
             }
         }
@@ -67,7 +68,11 @@ namespace BetterWriter.ViewModels {
         #region Methods
 
         private void OnNewFileOpened(string fileName) {
-            FileName = fileName;
+            WindowTitle = GetWindowTitle(fileName);
+        }
+
+        private string GetWindowTitle(string str) {
+            return string.Format("{0} - {1}", Info.GetName(), str);
         }
 
         #endregion
