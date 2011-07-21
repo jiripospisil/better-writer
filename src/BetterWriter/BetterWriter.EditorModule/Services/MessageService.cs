@@ -10,7 +10,6 @@ namespace BetterWriter.EditorModule.Services {
             MessageBox.Show(message);
         }
 
-
         public void ShowMessage(string message, string caption) {
             MessageBox.Show(message,caption);
         }
