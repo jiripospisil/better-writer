@@ -1,8 +1,8 @@
-﻿<Window x:Class="BetterWriter.Shell"
+﻿<Window x:Class="BetterWriter.Views.Shell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/CompositeWPF"
-        Title="Better Writer" Width="1300" WindowStartupLocation="CenterScreen" Background="#EAECF5">
+        Title="{Binding FileName}" Width="1300" WindowStartupLocation="CenterScreen" Background="#EAECF5">
     <Grid Margin="15 15 15 0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

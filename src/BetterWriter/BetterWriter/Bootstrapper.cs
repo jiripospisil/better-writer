@@ -3,6 +3,7 @@
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.Unity;
+using BetterWriter.Views;
 
 namespace BetterWriter {
     public class Bootstrapper : UnityBootstrapper {

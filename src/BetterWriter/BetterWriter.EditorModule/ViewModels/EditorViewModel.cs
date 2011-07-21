@@ -8,6 +8,8 @@ using System.IO;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Win32;
+using Microsoft.Practices.Prism.Events;
+using BetterWriter.Common.Events;
 
 namespace BetterWriter.EditorModule.ViewModels {
     public class EditorViewModel : ViewModelBase {
@@ -17,10 +19,11 @@ namespace BetterWriter.EditorModule.ViewModels {
         private readonly IFileService fileService;
         private readonly IMessageService messageService;
         private readonly IDialogService dialogService;
+        private readonly IEventAggregator eventAggregator;
 
         #endregion
 
-        #region Properties with backing fields
+        #region Properties
 
         private string _text;
         public string Text {
@@ -33,6 +36,11 @@ namespace BetterWriter.EditorModule.ViewModels {
                     RaisePropertyChanged("Text");
                 }
             }
+        }
+
+        private string FileName {
+            get;
+            set;
         }
 
         #endregion
@@ -55,6 +63,10 @@ namespace BetterWriter.EditorModule.ViewModels {
 
             try {
                 Text = this.fileService.ReadAllFromFile(fileName);
+                FileName = fileName;
+
+                var evt = this.eventAggregator.GetEvent<NewFileOpenedEvent>();
+                evt.Publish(fileName);
             } catch(Exception) {
                 this.messageService.ShowMessage("Unable to open the specified file.", "Error");
             }
@@ -64,10 +76,11 @@ namespace BetterWriter.EditorModule.ViewModels {
 
         #region Constructor
 
-        public EditorViewModel(IFileService fileService, IMessageService messageService, IDialogService dialogService) {
+        public EditorViewModel(IFileService fileService, IMessageService messageService, IDialogService dialogService, IEventAggregator eventAggregator) {
             this.fileService = fileService;
             this.messageService = messageService;
             this.dialogService = dialogService;
+            this.eventAggregator = eventAggregator;
         }
 
         #endregion

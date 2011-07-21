@@ -11,14 +11,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BetterWriter.ViewModels;
 
-namespace BetterWriter {
+namespace BetterWriter.Views {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Shell.xaml
     /// </summary>
     public partial class Shell : Window {
-        public Shell() {
+        public Shell(ShellViewModel viewModel) {
             InitializeComponent();
+
+            this.Loaded += (s, e) => {
+                this.DataContext = viewModel;
+            };
         }
     }
 }
