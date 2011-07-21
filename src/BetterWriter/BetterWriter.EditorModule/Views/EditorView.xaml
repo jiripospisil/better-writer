@@ -32,11 +32,7 @@
         </Grid.RowDefinitions>
 
         <Border BorderBrush="#DCDDE1" BorderThickness="1" CornerRadius="4" Padding="1"> 
-            <TextBox Grid.Row="0" Style="{StaticResource MainEditor}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap">
-                `Sundown` is a Markdown parser based on the original code of the
-                [Upskirt library](http://fossil.instinctive.eu/libupskirt/index) by Natacha Porté.
-            </TextBox>
-            
+            <TextBox Text="{Binding Text}" Grid.Row="0" Style="{StaticResource MainEditor}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" />
         </Border>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="HTML" Style="{StaticResource UtilityButton}" />
