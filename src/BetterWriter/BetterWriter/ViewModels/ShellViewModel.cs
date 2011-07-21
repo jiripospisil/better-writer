@@ -5,7 +5,13 @@ using BetterWriter.Common.BaseClasses;
 namespace BetterWriter.ViewModels {
     public class ShellViewModel : ViewModelBase {
 
+        #region Fields
+
         private readonly IEventAggregator eventAggregator;
+
+        #endregion
+
+        #region Properties
 
         private string _fileName;
         public string FileName {
@@ -23,6 +29,10 @@ namespace BetterWriter.ViewModels {
             }
         }
 
+        #endregion
+
+        #region Constructor
+
         public ShellViewModel(IEventAggregator eventAggregator) {
             this.eventAggregator = eventAggregator;
 
@@ -30,8 +40,14 @@ namespace BetterWriter.ViewModels {
             evt.Subscribe(OnNewFileOpened);
         }
 
+        #endregion
+
+        #region Methods
+
         public void OnNewFileOpened(string fileName) {
             FileName = fileName;
         }
+        
+        #endregion
     }
 }
