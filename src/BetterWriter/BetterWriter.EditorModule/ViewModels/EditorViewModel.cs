@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using BetterWriter.EditorModule.Services;
 using BetterWriter.Common.BaseClasses;
+using System.IO;
+using System.Windows.Input;
+using Microsoft.Practices.Prism.Commands;
+using Microsoft.Win32;
 
 namespace BetterWriter.EditorModule.ViewModels {
     public class EditorViewModel : ViewModelBase {
@@ -11,6 +15,8 @@ namespace BetterWriter.EditorModule.ViewModels {
         #region Fields
 
         private readonly IFileService fileService;
+        private readonly IMessageService messageService;
+        private readonly IDialogService dialogService;
 
         #endregion
 
@@ -31,17 +37,39 @@ namespace BetterWriter.EditorModule.ViewModels {
 
         #endregion
 
+        #region Commands with actions
 
-        #region Constructor
+        private ICommand _openFileCommand;
 
-        public EditorViewModel(IFileService fileService) {
-            this.fileService = fileService;
+        public ICommand OpenFileCommand {
+            get {
+                if(_openFileCommand == null) {
+                    _openFileCommand = new DelegateCommand(DoOpenFile);
+                }
+                return _openFileCommand;
+            }
+        }
+
+        private void DoOpenFile() {
+            string fileName = dialogService.ShowOpenFileDialog();
+
+            try {
+                Text = this.fileService.ReadAllFromFile(fileName);
+            } catch(Exception) {
+                this.messageService.ShowMessage("Unable to open the specified file.", "Error");
+            }
         }
 
         #endregion
 
+        #region Constructor
 
+        public EditorViewModel(IFileService fileService, IMessageService messageService, IDialogService dialogService) {
+            this.fileService = fileService;
+            this.messageService = messageService;
+            this.dialogService = dialogService;
+        }
 
-
+        #endregion
     }
 }
