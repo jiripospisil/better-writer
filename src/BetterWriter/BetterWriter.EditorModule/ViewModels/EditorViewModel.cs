@@ -45,35 +45,6 @@ namespace BetterWriter.EditorModule.ViewModels {
 
         #endregion
 
-        #region Commands with actions
-
-        private ICommand _openFileCommand;
-
-        public ICommand OpenFileCommand {
-            get {
-                if(_openFileCommand == null) {
-                    _openFileCommand = new DelegateCommand(DoOpenFile);
-                }
-                return _openFileCommand;
-            }
-        }
-
-        private void DoOpenFile() {
-            string fileName = dialogService.ShowOpenFileDialog();
-
-            try {
-                Text = this.fileService.ReadAllFromFile(fileName);
-                FileName = fileName;
-
-                var evt = this.eventAggregator.GetEvent<NewFileOpenedEvent>();
-                evt.Publish(fileName);
-            } catch(Exception) {
-                this.messageService.ShowMessage("Unable to open the specified file.", "Error");
-            }
-        }
-
-        #endregion
-
         #region Constructor
 
         public EditorViewModel(IFileService fileService, IMessageService messageService, IDialogService dialogService, IEventAggregator eventAggregator) {
@@ -81,6 +52,38 @@ namespace BetterWriter.EditorModule.ViewModels {
             this.messageService = messageService;
             this.dialogService = dialogService;
             this.eventAggregator = eventAggregator;
+
+            var evt = this.eventAggregator.GetEvent<ShortcutPressedEvent>();
+            evt.Subscribe(HandleShortcutPressedEvent);
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void HandleShortcutPressedEvent(Shortcut shortcut) {
+            switch(shortcut) {
+                case Shortcut.CTRL_O:
+                    HandleControlOShortcut();
+                    break;
+            }
+        }
+
+        private void HandleControlOShortcut() {
+            string fileName = dialogService.ShowOpenFileDialog();
+
+            if(fileName != null) {
+
+                try {
+                    Text = this.fileService.ReadAllFromFile(fileName);
+                    FileName = fileName;
+
+                    var evt = this.eventAggregator.GetEvent<NewFileOpenedEvent>();
+                    evt.Publish(fileName);
+                } catch(Exception) {
+                    this.messageService.ShowMessage("Unable to open the specified file.", "Error");
+                }
+            }
         }
 
         #endregion

@@ -3,6 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/CompositeWPF"
         Title="{Binding FileName}" Width="1300" WindowStartupLocation="CenterScreen" Background="#EAECF5">
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ControlOShortcutCommand}" Gesture="CTRL+O" />
+    </Window.InputBindings>
+    
     <Grid Margin="15 15 15 0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

@@ -24,9 +24,7 @@
         </Style>
     </UserControl.Resources>
     
-    <UserControl.InputBindings>
-        <KeyBinding Command="{Binding OpenFileCommand}" Gesture="CTRL+O" />
-    </UserControl.InputBindings>
+    
 
     <Grid>
 

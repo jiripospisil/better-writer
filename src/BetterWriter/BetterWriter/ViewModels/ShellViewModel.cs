@@ -1,6 +1,8 @@
 ﻿using Microsoft.Practices.Prism.Events;
 using BetterWriter.Common.Events;
 using BetterWriter.Common.BaseClasses;
+using System.Windows.Input;
+using Microsoft.Practices.Prism.Commands;
 
 namespace BetterWriter.ViewModels {
     public class ShellViewModel : ViewModelBase {
@@ -42,12 +44,32 @@ namespace BetterWriter.ViewModels {
 
         #endregion
 
+        #region Commands with actions
+
+        private ICommand _controlOShortcutCommand;
+
+        public ICommand ControlOShortcutCommand {
+            get {
+                if(_controlOShortcutCommand == null) {
+                    _controlOShortcutCommand = new DelegateCommand(PublishControlOShortcut);
+                }
+                return _controlOShortcutCommand;
+            }
+        }
+
+        private void PublishControlOShortcut() {
+            var evt = this.eventAggregator.GetEvent<ShortcutPressedEvent>();
+            evt.Publish(Shortcut.CTRL_O);
+        }
+
+        #endregion
+
         #region Methods
 
-        public void OnNewFileOpened(string fileName) {
+        private void OnNewFileOpened(string fileName) {
             FileName = fileName;
         }
-        
+
         #endregion
     }
 }
