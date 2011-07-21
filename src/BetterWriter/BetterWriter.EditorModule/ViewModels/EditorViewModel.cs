@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BetterWriter.EditorModule.Services;
+using BetterWriter.Common.BaseClasses;
 
 namespace BetterWriter.EditorModule.ViewModels {
-    public class EditorViewModel {
+    public class EditorViewModel : ViewModelBase {
 
         #region Fields
 
@@ -21,7 +22,10 @@ namespace BetterWriter.EditorModule.ViewModels {
                 return _text;
             }
             set {
-                _text = value;
+                if(_text != value) {
+                    _text = value;
+                    RaisePropertyChanged("Text");
+                }
             }
         }
 
