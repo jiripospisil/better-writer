@@ -10,7 +10,21 @@ namespace BetterWriter.EditorModule.Services {
             var dialog = new OpenFileDialog();
             dialog.DefaultExt = ".txt";
             dialog.Filter = "Text documents (.txt)|*.txt";
-            
+
+            Nullable<bool> result = dialog.ShowDialog();
+
+            if(result == true) {
+                return dialog.FileName;
+            }
+
+            return null;
+        }
+
+        public string ShowSaveFileDialog() {
+            var dialog = new SaveFileDialog();
+            dialog.DefaultExt = ".txt";
+            dialog.Filter = "Text documents (.txt)|*.txt";
+
             Nullable<bool> result = dialog.ShowDialog();
 
             if(result == true) {
