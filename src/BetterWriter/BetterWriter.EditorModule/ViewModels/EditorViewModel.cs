@@ -73,7 +73,6 @@ namespace BetterWriter.EditorModule.ViewModels {
             string fileName = dialogService.ShowOpenFileDialog();
 
             if(fileName != null) {
-
                 try {
                     Text = this.fileService.ReadAllFromFile(fileName);
                     FileName = fileName;
