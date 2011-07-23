@@ -25,7 +25,7 @@ namespace BetterWriter.EditorModule.ViewModels {
 
         #region Properties
 
-        private string _text;
+        private string _text = string.Empty;
         public string Text {
             get {
                 return _text;
@@ -66,6 +66,9 @@ namespace BetterWriter.EditorModule.ViewModels {
                 case Shortcut.CTRL_O:
                     HandleControlOShortcut();
                     break;
+                case Shortcut.CTRL_S:
+                    HandleControlSShortcut();
+                    break;
             }
         }
 
@@ -83,6 +86,34 @@ namespace BetterWriter.EditorModule.ViewModels {
                     this.messageService.ShowMessage("Unable to open the specified file.", "Error");
                 }
             }
+        }
+
+        private void HandleControlSShortcut() {
+            try {
+                if(FileName != null) {
+                    WriteToFile();
+                } else {
+                    AskForFileNameAndWriteToFile();
+                }
+            } catch(Exception) {
+                this.messageService.ShowMessage("Unable to save to the specified file.", "Error");
+            }
+        }
+
+        private void AskForFileNameAndWriteToFile() {
+            string fileName = dialogService.ShowSaveFileDialog();
+
+            if(fileName != null) {
+                this.fileService.WriteAllToFile(fileName, Text);
+                FileName = fileName;
+
+                var evt = this.eventAggregator.GetEvent<NewFileOpenedEvent>();
+                evt.Publish(fileName);
+            }
+        }
+
+        private void WriteToFile() {
+            this.fileService.WriteAllToFile(FileName, Text);
         }
 
         #endregion
