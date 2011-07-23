@@ -9,5 +9,9 @@ namespace BetterWriter.EditorModule.Services {
         public string ReadAllFromFile(string filename) {
             return File.ReadAllText(filename, Encoding.UTF8);
         }
+
+        public void WriteAllToFile(string path, string text) {
+            File.WriteAllText(path, text, Encoding.UTF8);
+        }
     }
 }
