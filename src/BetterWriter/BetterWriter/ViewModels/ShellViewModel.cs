@@ -39,8 +39,8 @@ namespace BetterWriter.ViewModels {
         public ShellViewModel(IEventAggregator eventAggregator) {
             this.eventAggregator = eventAggregator;
 
-            var evt = this.eventAggregator.GetEvent<NewFileOpenedEvent>();
-            evt.Subscribe(OnNewFileOpened);
+            var evt = this.eventAggregator.GetEvent<OpenedFileChangedEvent>();
+            evt.Subscribe(OnOpenedFileChanged);
         }
 
         #endregion
@@ -83,7 +83,7 @@ namespace BetterWriter.ViewModels {
 
         #region Methods
 
-        private void OnNewFileOpened(string fileName) {
+        private void OnOpenedFileChanged(string fileName) {
             WindowTitle = GetWindowTitle(fileName);
         }
 

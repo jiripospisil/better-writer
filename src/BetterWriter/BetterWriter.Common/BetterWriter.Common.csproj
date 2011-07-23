@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="BaseClasses\ViewModelBase.cs" />
     <Compile Include="Events\ShortcutPressedEvent.cs" />
-    <Compile Include="Events\NewFileOpenedEvent.cs" />
+    <Compile Include="Events\OpenedFileChangedEvent.cs" />
     <Compile Include="Events\Shortcut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

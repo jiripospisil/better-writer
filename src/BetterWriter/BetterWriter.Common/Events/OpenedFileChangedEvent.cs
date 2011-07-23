@@ -5,6 +5,6 @@ using System.Text;
 using Microsoft.Practices.Prism.Events;
 
 namespace BetterWriter.Common.Events {
-    public class NewFileOpenedEvent : CompositePresentationEvent<string> {
+    public class OpenedFileChangedEvent : CompositePresentationEvent<string> {
     }
 }

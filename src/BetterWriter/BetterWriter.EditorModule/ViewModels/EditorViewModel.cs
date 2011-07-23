@@ -80,7 +80,7 @@ namespace BetterWriter.EditorModule.ViewModels {
                     Text = this.fileService.ReadAllFromFile(fileName);
                     FileName = fileName;
 
-                    var evt = this.eventAggregator.GetEvent<NewFileOpenedEvent>();
+                    var evt = this.eventAggregator.GetEvent<OpenedFileChangedEvent>();
                     evt.Publish(fileName);
                 } catch(Exception) {
                     this.messageService.ShowMessage("Unable to open the specified file.", "Error");
@@ -107,7 +107,7 @@ namespace BetterWriter.EditorModule.ViewModels {
                 this.fileService.WriteAllToFile(fileName, Text);
                 FileName = fileName;
 
-                var evt = this.eventAggregator.GetEvent<NewFileOpenedEvent>();
+                var evt = this.eventAggregator.GetEvent<OpenedFileChangedEvent>();
                 evt.Publish(fileName);
             }
         }
