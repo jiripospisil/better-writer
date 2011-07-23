@@ -63,6 +63,22 @@ namespace BetterWriter.ViewModels {
             evt.Publish(Shortcut.CTRL_O);
         }
 
+        private ICommand _controlSShortcutCommand;
+
+        public ICommand ControlSShortcutCommand {
+            get {
+                if(_controlSShortcutCommand == null) {
+                    _controlSShortcutCommand = new DelegateCommand(PublishControlSShortcut);
+                }
+                return _controlSShortcutCommand;
+            }
+        }
+
+        private void PublishControlSShortcut() {
+            var evt = this.eventAggregator.GetEvent<ShortcutPressedEvent>();
+            evt.Publish(Shortcut.CTRL_S);
+        }
+
         #endregion
 
         #region Methods

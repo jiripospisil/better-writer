@@ -5,6 +5,7 @@ using System.Text;
 
 namespace BetterWriter.Common.Events {
     public enum Shortcut {
-        CTRL_O
+        CTRL_O,
+        CTRL_S
     }
 }
