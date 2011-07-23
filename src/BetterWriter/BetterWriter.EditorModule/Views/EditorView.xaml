@@ -34,7 +34,7 @@
         </Grid.RowDefinitions>
 
         <Border BorderBrush="#DCDDE1" BorderThickness="1" CornerRadius="4" Padding="1"> 
-            <TextBox Text="{Binding Text}" Grid.Row="0" Style="{StaticResource MainEditor}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" />
+            <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Style="{StaticResource MainEditor}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" />
         </Border>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="HTML" Style="{StaticResource UtilityButton}" />
